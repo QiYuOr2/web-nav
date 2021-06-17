@@ -1,104 +1,75 @@
 <template>
-  <n-layout-sider bordered>
-    <n-menu :options="menuOptions" />
+  <n-layout-sider bordered style="position: fixed; z-index: 999; height: 100vh">
+    <div class="sider-wrapper">
+      <n-gradient-text
+        class="logo"
+        :gradient="{
+          deg: 180,
+          from: '#e66465',
+          to: '#9198e5',
+        }"
+      >
+        导个航先
+      </n-gradient-text>
+      <n-menu
+        :value="selected"
+        :options="menuOptions"
+        @update:value="changeRouter"
+      />
+    </div>
   </n-layout-sider>
+  <n-layout-sider style="visibility: hidden"></n-layout-sider>
 </template>
 
 <script lang="ts">
-import { defineComponent, h } from 'vue';
-import { NMenu, NLayoutSider, NIcon } from 'naive-ui';
-
+import { defineComponent, h, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import {
-  BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
-  WineOutline as WineIcon,
-} from '@vicons/ionicons5';
+  NMenu,
+  NLayoutSider,
+  NIcon,
+  MenuOption,
+  MenuGroupOption,
+  NGradientText,
+} from 'naive-ui';
+import { routes } from '../router';
 
 function renderIcon(icon: any) {
   return () => h(NIcon, null, { default: () => h(icon) });
 }
 
-const menuOptions = [
-  {
-    label: '且听风吟',
-    key: 'hear-the-wind-sing',
-    icon: renderIcon(BookIcon),
-  },
-  {
-    label: '1973年的弹珠玩具',
-    key: 'pinball-1973',
-    icon: renderIcon(BookIcon),
-    disabled: true,
-    children: [
-      {
-        label: '鼠',
-        key: 'rat',
-      },
-    ],
-  },
-  {
-    label: '寻羊冒险记',
-    key: 'a-wild-sheep-chase',
-    disabled: true,
-    icon: renderIcon(BookIcon),
-  },
-  {
-    label: '舞，舞，舞',
-    key: 'dance-dance-dance',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        type: 'group',
-        label: '人物',
-        key: 'people',
-        children: [
-          {
-            label: '叙事者',
-            key: 'narrator',
-            icon: renderIcon(PersonIcon),
-          },
-          {
-            label: '羊男',
-            key: 'sheep-man',
-            icon: renderIcon(PersonIcon),
-          },
-        ],
-      },
-      {
-        label: '饮品',
-        key: 'beverage',
-        icon: renderIcon(WineIcon),
-        children: [
-          {
-            label: '威士忌',
-            key: 'whisky',
-          },
-        ],
-      },
-      {
-        label: '食物',
-        key: 'food',
-        children: [
-          {
-            label: '三明治',
-            key: 'sandwich',
-          },
-        ],
-      },
-      {
-        label: '过去增多，未来减少',
-        key: 'the-past-increases-the-future-recedes',
-      },
-    ],
-  },
-];
+const menuOptions: (MenuOption | MenuGroupOption)[] = routes
+  .filter((route) => route.meta)
+  .map((route) => ({
+    label: route.meta!.label as string,
+    key: route.meta!.key as string,
+    icon: renderIcon(route.meta!.icon),
+  }));
 
 export default defineComponent({
-  components: { NMenu, NLayoutSider },
+  components: { NMenu, NLayoutSider, NGradientText },
   setup() {
-    return { menuOptions };
+    const r = useRouter();
+    const selected = ref<string>('tool');
+
+    const changeRouter = (e: any) => {
+      selected.value = e;
+      r.push(e);
+    };
+
+    return { menuOptions, selected, changeRouter };
   },
 });
 </script>
 
-<style></style>
+<style>
+.sider-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.logo {
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 24px;
+}
+</style>

@@ -8,9 +8,9 @@
 import { watch, ref, onMounted } from 'vue';
 import { NConfigProvider, darkTheme } from 'naive-ui';
 import Basic from './components/Basic.vue';
-import useTheme from './hooks/useTheme';
+import useStore from './hooks/useStore';
 
-const { theme } = useTheme();
+const { theme } = useStore();
 </script>
 
 <style>
