@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, h, ref } from 'vue';
+import { defineComponent, h, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import {
   NMenu,
@@ -52,8 +52,11 @@ export default defineComponent({
     const r = useRouter();
     const selected = ref<string>('tool');
 
+    watch(r.currentRoute, (newValue) => {
+      selected.value = newValue.meta!.key as string;
+    });
+
     const changeRouter = (e: any) => {
-      selected.value = e;
       r.push(e);
     };
 

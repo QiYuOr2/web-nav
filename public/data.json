@@ -1,0 +1,54 @@
+{
+  "tool": [
+    {
+      "title": "Carbon",
+      "url": "https://carbon.now.sh/",
+      "img": "https://carbon.now.sh/favicon.ico",
+      "desc": "代码图片生成器"
+    },
+    {
+      "title": "CodePen",
+      "url": "https://codepen.io/",
+      "img": "https://codepen.io/favicon.ico",
+      "desc": "在线IDE"
+    }
+  ],
+  "blog": [
+    {
+      "title": "廖雪峰的官网",
+      "url": "https://www.liaoxuefeng.com/",
+      "img": "https://www.liaoxuefeng.com/favicon.ico",
+      "desc": "JavaScript、Java、区块链等教程"
+    },
+    {
+      "title": "阮一峰的网络日志",
+      "url": "http://www.ruanyifeng.com/blog/",
+      "img": "http://www.ruanyifeng.com/blog/favicon.ico",
+      "desc": "现在主要更新周刊"
+    },
+    {
+      "title": "凹凸实验室",
+      "url": "https://aotu.io/",
+      "img": "https://aotu.io/favicon.ico",
+      "desc": "Taro.js开发者，京东团队"
+    },
+    {
+      "title": "美团技术团队",
+      "url": "https://tech.meituan.com/",
+      "img": "https://awps-assets.meituan.net/mit/blog/v20190629/asset/icon/favicon.ico?v=Whistle&t=20181017-1r",
+      "desc": "好久没更新了，图标真糊"
+    },
+    {
+      "title": "冴羽的个人博客",
+      "url": "https://juejin.cn/user/712139234359182/posts",
+      "img": "https://sf3-ttcdn-tos.pstatp.com/img/user-avatar/3cc59c2bbb4a99bcadc06cf1b1e2a4ca~300x300.image",
+      "desc": "前端大佬"
+    },
+    {
+      "title": "大深海-技术博客",
+      "url": "https://chenshenhai.com/",
+      "img": "https://chenshenhai.com/favicon.ico",
+      "desc": "有许多js相关的开源书"
+    }
+  ]
+}
