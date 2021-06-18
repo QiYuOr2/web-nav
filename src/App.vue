@@ -36,7 +36,7 @@ export default defineComponent({
     const { theme } = useStore();
 
     onMounted(() => {
-      fetch('/data.json')
+      fetch('https://cdn.jsdelivr.net/gh/xmy6364/web-nav/public/data.json')
         .then((res) => res.json())
         .then((res: Record<string, CardData[]>) => {
           Object.keys(res).forEach((item) => {
