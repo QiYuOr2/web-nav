@@ -36,10 +36,16 @@ export default defineComponent({
     const { theme } = useStore();
 
     onMounted(() => {
-      fetch('https://cdn.jsdelivr.net/gh/xmy6364/web-nav/public/data.json')
+      const url =
+        import.meta.env.MODE === 'development'
+          ? 'http://localhost:3000/data.json'
+          : 'https://cdn.jsdelivr.net/gh/xmy6364/web-nav/public/data.json';
+
+      fetch(url)
         .then((res) => res.json())
         .then((res: Record<string, CardData[]>) => {
           Object.keys(res).forEach((item) => {
+            console.log(item);
             local.set(item, res[item]);
           });
         });
