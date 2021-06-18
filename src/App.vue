@@ -1,15 +1,20 @@
 <template>
-  <n-config-provider :theme="theme.themeConfig">
-    <basic />
+  <n-config-provider :theme="theme.themeConfig" :hljs="hljs">
+    <n-message-provider>
+      <basic />
+    </n-message-provider>
   </n-config-provider>
 </template>
 
 <script lang="ts">
 import { onMounted, defineComponent } from 'vue';
-import { NConfigProvider } from 'naive-ui';
+import { NConfigProvider, NMessageProvider } from 'naive-ui';
 import Basic from './components/Basic.vue';
 import useStore from './hooks/useStore';
 import { local } from 'symstorage';
+import hljs from 'highlight.js/lib/core';
+import typescript from 'highlight.js/lib/languages/typescript';
+import css from 'highlight.js/lib/languages/css';
 
 export type CardData = {
   title: string;
@@ -18,9 +23,13 @@ export type CardData = {
   desc: string;
 };
 
+hljs.registerLanguage('typescript', typescript);
+hljs.registerLanguage('css', css);
+
 export default defineComponent({
   components: {
     NConfigProvider,
+    NMessageProvider,
     Basic,
   },
   setup() {
@@ -38,6 +47,7 @@ export default defineComponent({
 
     return {
       theme,
+      hljs,
     };
   },
 });

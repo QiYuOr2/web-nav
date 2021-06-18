@@ -2,10 +2,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "clipboard": "^2.0.8",
+    "highlight.js": "^11.0.1",
     "symstorage": "^1.0.3",
     "vue": "^3.0.5",
     "vue-router": "4"

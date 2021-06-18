@@ -4,7 +4,16 @@
       <n-card class="card-item" hoverable @click="jumpTo">
         <template #header>
           <n-space>
-            <n-avatar :src="img" style="--color: transparent" />
+            <n-avatar
+              class="img-avatar"
+              v-if="imgUrl"
+              style="--color: transparent"
+            >
+              <img class="img" :src="imgUrl" @error="imgErrHandler" />
+            </n-avatar>
+            <n-avatar v-else>
+              {{ title?.slice(0, 1) }}
+            </n-avatar>
             {{ title }}
           </n-space>
         </template>
@@ -18,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { ref, defineComponent } from 'vue';
 import { NCard, NGrid, NGi, NAvatar, NPopover, NSpace } from 'naive-ui';
 
 export default defineComponent({
@@ -32,8 +41,13 @@ export default defineComponent({
     const jumpTo = () => {
       open(props.url);
     };
+    const imgUrl = ref(props.img);
 
-    return { jumpTo };
+    const imgErrHandler = () => {
+      imgUrl.value = '';
+    };
+
+    return { jumpTo, imgUrl, imgErrHandler };
   },
 });
 </script>
@@ -44,6 +58,11 @@ export default defineComponent({
 }
 .card-item .n-card-header {
   padding-bottom: 0;
+}
+.card-item .n-card-header .img-avatar .n-avatar__text,
+.card-item .n-card-header .img {
+  width: 90%;
+  height: 90%;
 }
 .card-item .content {
   display: inline-block;

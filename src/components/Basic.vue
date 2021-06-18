@@ -48,9 +48,11 @@ export default defineComponent({
 .basic-layout .basic-header {
   padding: 10px 30px;
 }
-.basic-layout .basic-content {
+.basic-layout .basic-content,
+.basic-layout .basic-content .n-layout-scroll-container {
   min-height: calc(100vh - 2rem - 55px);
 }
+
 .basic-layout .basic-footer {
   height: 2rem;
   line-height: 2rem;
