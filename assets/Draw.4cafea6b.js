@@ -1,0 +1,1 @@
+import{_ as a}from"./CardList.d81187ac.js";import{a as s,L as r,b as t,o,c as d}from"./vendor.b9ae6f5a.js";var e=s({components:{CardList:a},setup:()=>({drawList:r.get("draw")})});e.render=function(a,s,r,e,i,n){const c=t("card-list");return o(),d(c,{list:a.drawList},null,8,["list"])};export default e;
